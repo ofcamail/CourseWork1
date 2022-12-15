@@ -1,67 +1,81 @@
 public class Main {
-   static Employee [] employee = new Employee[10];
+    static Employee [] employee = new Employee[10];
 
-    public static void makeListOfEmployees(Employee[] arr) {
-        for (Object empl : arr) {
+    public static void makeListOfEmployees() {
+        for (Object empl : employee) {
             System.out.println(empl);
         }
     }
-    public static void makelistOfEmployeesBySurname(Employee[]arr) {
-        for (int i = 0; i<arr.length; i++){
-            System.out.println(arr[i].getFullName());
+    public static void makelistOfEmployeesBySurname() {
+        for (int i = 0; i<employee.length; i++){
+            System.out.println(employee[i].getFullName());
         }
     }
-    public static StringBuilder  countMinSalary(Employee[]arr) {
-        int minSalary = (int) arr[0].getSalary();
+    public static StringBuilder  countMinSalary() {
+        int minSalary = (int) employee[0].getSalary();
         StringBuilder employeeWithMinSalary = new StringBuilder();
-        for (int i = 0; i<arr.length; i++){
-            if (arr [i].getSalary()< minSalary) {
-                minSalary = (int) arr[i].getSalary();
+        for (int i = 0; i<employee.length; i++){
+            if (employee [i].getSalary()< minSalary) {
+                minSalary = (int) employee[i].getSalary();
                 employeeWithMinSalary.setLength(0);
-                employeeWithMinSalary.append(arr[i].getFullName()).append(" ").append(minSalary);
+                employeeWithMinSalary.append(employee[i].getFullName()).append(" ").append(minSalary);
             }
         }
         return employeeWithMinSalary;
     }
-    public static void printMinSalary (Employee[]arr){
-        System.out.println("Сотрудник с минимальной зарплатой: " + countMinSalary(arr));
+    public static void printMinSalary (){
+        System.out.println("Сотрудник с минимальной зарплатой: " + countMinSalary());
     }
-    public static StringBuilder  countMaxSalary(Employee[]arr) {
-        int maxSalary = (int) arr[0].getSalary();
+    public static StringBuilder  countMaxSalary() {
+        int maxSalary = (int) employee[0].getSalary();
         StringBuilder employeeWithMaxSalary = new StringBuilder();
-        for (int i = 0; i<arr.length; i++){
-            if (arr[i].getSalary()>maxSalary) {
-                maxSalary = (int) arr[i].getSalary();
+        for (int i = 0; i<employee.length; i++){
+            if (employee[i].getSalary()>maxSalary) {
+                maxSalary = (int) employee[i].getSalary();
                 employeeWithMaxSalary.setLength(0);
-                employeeWithMaxSalary.append(arr[i].getFullName()).append(" ").append(maxSalary);;
+                employeeWithMaxSalary.append(employee[i].getFullName()).append(" ").append(maxSalary);;
             }
         }
         return employeeWithMaxSalary;
     }
-    public static void printMaxSalary (Employee[]arr){
-        System.out.println("Сотрудник с максимальной зарплатой: " + countMaxSalary(arr));
+    public static void printMaxSalary (){
+        System.out.println("Сотрудник с максимальной зарплатой: " + countMaxSalary());
     }
 
-    public static int countAllSalaryPerMonth(Employee[] salar) {
+    public static int countAllSalaryPerMonth() {
         int total = 0;
-        for (int i = 0; i < salar.length; i++) {
-            total = (int) (total + salar[i].getSalary());
+        for (int i = 0; i < employee.length; i++) {
+            total = (int) (total + employee[i].getSalary());
         }
         return total;
     }
-    public static void printAllSalaryPerMonth(Employee[]employees) {
-        System.out.println("Сумма зарплат за месяц: " + countAllSalaryPerMonth(employees));
+    public static void printAllSalaryPerMonth() {
+        System.out.println("Сумма зарплат за месяц: " + countAllSalaryPerMonth());
     }
-    public static int countAverageValueOfSalaryPerMonth(Employee[]salar) {
+    public static int countAverageValueOfSalaryPerMonth() {
         int total = 0;
-        for (int i = 0; i < salar.length; i++) {
-            total = (int) (total + salar[i].getSalary());
+        for (int i = 0; i < employee.length; i++) {
+            total = (int) (total + employee[i].getSalary());
         }
-        int averageSalary = total/salar.length;
+        int averageSalary = total/employee.length;
         return averageSalary;
     }
-    public static void printAverageSalaryPerMonth(Employee[]employees){
-        System.out.println("Среднее значение зарплаты за месяц: " + countAverageValueOfSalaryPerMonth(employees));
+    public static void printAverageSalaryPerMonth(){
+        System.out.println("Среднее значение зарплаты за месяц: " + countAverageValueOfSalaryPerMonth());
+    }
+    public static StringBuilder indexSalary(){
+        double indexSalary = 1.04;
+        StringBuilder newSalar = new StringBuilder();
+        int newSalary = 0;
+        for (int i=0;i<employee.length;i++){
+            newSalary = (int) (employee[i].getSalary() * indexSalary);
+            newSalar.append("Зарплата после индексации: ").append("\n").append(employee[i].getFullName()).append(" ").append(newSalary).append("\n");
+        }
+        return newSalar;
+    }
+
+    public static void printIndexSalary(){
+        System.out.println(indexSalary());
     }
 
     public static void main(String[] args) {
@@ -74,15 +88,15 @@ public class Main {
         employee [5] = new Employee("Иванова Иванесса Ивановна", "5", 3246);
         employee [6] = new Employee("Годзилова Годзила Годзиловна", "4", 2333);
         employee [7] = new Employee("Кротов Крот Кротович", "2", 5534);
-        employee [8] = new Employee("Суркова Сурина Суркововна", "1", 1322);
+        employee [8] = new Employee("Суркова Срина Суркововна", "1", 1322);
         employee [9] = new Employee("Дуралеева Давидива Давидовна", "2", 2222);
-
-        makeListOfEmployees(employee);
-        printAllSalaryPerMonth(employee);
-        printMinSalary(employee);
-        printMaxSalary(employee);
-        printAverageSalaryPerMonth(employee);
-        makelistOfEmployeesBySurname(employee);
+        makeListOfEmployees();
+        printAllSalaryPerMonth();
+        printMinSalary();
+        printMaxSalary();
+        printAverageSalaryPerMonth();
+        makelistOfEmployeesBySurname();
+        printIndexSalary();
     }
 }
 
