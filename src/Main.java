@@ -15,36 +15,30 @@ public class Main {
             }
         }
     }
-    public static String  findEmployeeWithMinSalary() {
-       String employeeWithMinSalary= null;
+    public static Employee  findEmployeeWithMinSalary() {
         int minSalary = (int) employee[0].getSalary();
-        for (int i = 0; i<employee.length; i++){
-            if (employee[i]==null){
-                continue;
-            }
-            if  (employee [i].getSalary()< minSalary) {
-                    minSalary = (int) employee[i].getSalary();
-                    employeeWithMinSalary = employee[i].getFullName();
+        int emp = 0;
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i] != null && employee[i].getSalary() < minSalary) {
+                minSalary = (int) employee[i].getSalary();
+                emp = i;
             }
         }
-        return employeeWithMinSalary;
+        return employee[emp];
     }
     public static void showEmployeeWithMinSalary (){
         System.out.println("Сотрудник с минимальной зарплатой: " + findEmployeeWithMinSalary());
     }
-    public static String  findEmployeeWithMaxSalary() {
+    public static Employee  findEmployeeWithMaxSalary() {
         int maxSalary = (int) employee[0].getSalary();
-        String employeeWithMaxSalary = null;
-        for (int i = 0; i<employee.length; i++){
-            if (employee[i]==null){
-                continue;
-            }
-            if (employee[i].getSalary()>maxSalary) {
+        int em = 0;
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i] != null && employee[i].getSalary() > maxSalary) {
                 maxSalary = (int) employee[i].getSalary();
-                employeeWithMaxSalary = employee[i].getFullName();
+                em = i;
             }
-            }
-        return employeeWithMaxSalary;
+        }
+        return employee[em];
     }
     public static void showEmployeeWithMaxMaxSalary (){
         System.out.println("Сотрудник с максимальной зарплатой: " + findEmployeeWithMaxSalary());
