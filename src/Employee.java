@@ -1,8 +1,8 @@
 public class Employee {
-    private String fullName;
+    private final String fullName;
     private int department;
     private int salary;
-    private int id = 1;
+    private int id;
     private static int counter;
 
     public Employee(String fullName, int department, int salary) {
@@ -32,6 +32,7 @@ public class Employee {
     public void setSalary(int salary) {
         this.salary = salary;
     }
+
 
     @Override
     public String toString() {

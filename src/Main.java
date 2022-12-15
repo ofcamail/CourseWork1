@@ -1,5 +1,5 @@
 public class Main {
-    static Employee [] employee = new Employee[10];
+    private static Employee [] employee = new Employee[10];
 
     public static void showListOfEmployeesWithAllInformation() {
         for (int i=0;i<employee.length;i++ ) {
@@ -8,7 +8,7 @@ public class Main {
             }
         }
     }
-    public static void makelistOfEmployeesBySurname() {
+    public static void printListOfEmployeesBySurname() {
         for (int i = 0; i < employee.length; i++) {
             if (employee[i] != null) {
                 System.out.println(employee[i].getFullName());
@@ -57,15 +57,12 @@ public class Main {
         System.out.println("Сумма зарплат за месяц: " + countAllSalaryPerMonth());
     }
     public static int countAverageValueOfSalaryPerMonth(int total) {
-        countAllSalaryPerMonth();
         int index = 0;
         int averageSalary = 0;
 
         for (int i = 0; i < employee.length; i++) {
             if (employee[i] != null) {
                 index++;
-            } else if (employee[i] == null) {
-                index = index;
             }
         }
         averageSalary = total / index;
@@ -93,7 +90,7 @@ public class Main {
         showEmployeeWithMinSalary();
         showEmployeeWithMaxMaxSalary();
         printAverageSalaryPerMonth();
-        makelistOfEmployeesBySurname();
+        printListOfEmployeesBySurname();
 
     }
 }
