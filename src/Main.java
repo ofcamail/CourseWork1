@@ -1,34 +1,30 @@
 public class Main {
     static Employee [] employee = new Employee[10];
 
-    public static void ShowListOfEmployeesWithAllInformation() {
+    public static void showListOfEmployeesWithAllInformation() {
         for (int i=0;i<employee.length;i++ ) {
-            if (employee[i] == null) {
-              continue;
-            }else{
-                System.out.println(employee[i]);;
+            if (employee[i] != null) {
+                System.out.println(employee[i]);
             }
         }
     }
     public static void makelistOfEmployeesBySurname() {
         for (int i = 0; i < employee.length; i++) {
-            if (employee[i] == null) {
-                continue;
-            } else {
+            if (employee[i] != null) {
                 System.out.println(employee[i].getFullName());
             }
         }
     }
-    public static StringBuilder  findEmployeeWithMinSalary() {
+    public static String  findEmployeeWithMinSalary() {
+       String employeeWithMinSalary= null;
         int minSalary = (int) employee[0].getSalary();
-        StringBuilder employeeWithMinSalary = new StringBuilder();
         for (int i = 0; i<employee.length; i++){
             if (employee[i]==null){
                 continue;
-            } else if (employee [i].getSalary()< minSalary && employee[i]!=null) {
+            }
+            if  (employee [i].getSalary()< minSalary) {
                     minSalary = (int) employee[i].getSalary();
-                    employeeWithMinSalary.setLength(0);
-                    employeeWithMinSalary.append(employee[i].getFullName()).append(" ").append(minSalary);
+                    employeeWithMinSalary = employee[i].getFullName();
             }
         }
         return employeeWithMinSalary;
@@ -36,31 +32,29 @@ public class Main {
     public static void showEmployeeWithMinSalary (){
         System.out.println("Сотрудник с минимальной зарплатой: " + findEmployeeWithMinSalary());
     }
-    public static StringBuilder  FindEmployeeWithMaxSalary() {
+    public static String  findEmployeeWithMaxSalary() {
         int maxSalary = (int) employee[0].getSalary();
-        StringBuilder employeeWithMaxSalary = new StringBuilder();
+        String employeeWithMaxSalary = null;
         for (int i = 0; i<employee.length; i++){
             if (employee[i]==null){
                 continue;
-            }else if (employee[i].getSalary()>maxSalary) {
+            }
+            if (employee[i].getSalary()>maxSalary) {
                 maxSalary = (int) employee[i].getSalary();
-                employeeWithMaxSalary.setLength(0);
-                employeeWithMaxSalary.append(employee[i].getFullName()).append(" ").append(maxSalary);;
+                employeeWithMaxSalary = employee[i].getFullName();
             }
             }
         return employeeWithMaxSalary;
     }
-    public static void ShowEmployeeWithMaxMaxSalary (){
-        System.out.println("Сотрудник с максимальной зарплатой: " + FindEmployeeWithMaxSalary());
+    public static void showEmployeeWithMaxMaxSalary (){
+        System.out.println("Сотрудник с максимальной зарплатой: " + findEmployeeWithMaxSalary());
     }
 
     public static int countAllSalaryPerMonth() {
         int total = 0;
         for (int i = 0; i < employee.length; i++) {
-            if (employee[i]==null){
-                continue;
-            } else {
-                total = (int) (total + employee[i].getSalary());
+            if (employee[i]!=null){
+            total = (int) (total + employee[i].getSalary());
             }
         }
         return total;
@@ -68,19 +62,23 @@ public class Main {
     public static void printAllSalaryPerMonth() {
         System.out.println("Сумма зарплат за месяц: " + countAllSalaryPerMonth());
     }
-    public static int countAverageValueOfSalaryPerMonth() {
-        int total = 0;
+    public static int countAverageValueOfSalaryPerMonth(int total) {
+        countAllSalaryPerMonth();
+        int index = 0;
+        int averageSalary = 0;
+
         for (int i = 0; i < employee.length; i++) {
-            if (employee[i] == null) {
-                continue;
-            } else {    total = (int) (total + employee[i].getSalary());
+            if (employee[i] != null) {
+                index++;
+            } else if (employee[i] == null) {
+                index = index;
             }
         }
-        int averageSalary = total/employee.length;
-        return averageSalary;
+        averageSalary = total / index;
+            return averageSalary;
     }
     public static void printAverageSalaryPerMonth(){
-        System.out.println("Среднее значение зарплаты за месяц: " + countAverageValueOfSalaryPerMonth());
+        System.out.println("Среднее значение зарплаты за месяц: " + countAverageValueOfSalaryPerMonth(countAllSalaryPerMonth()));
     }
 
 
@@ -96,10 +94,10 @@ public class Main {
         employee [7] = new Employee("Кротов Крот Кротович", 2, 5534);
         employee [8] = new Employee("Суркова Срина Суркововна", 1, 1322);
         employee [9] = new Employee("Дуралеева Давидива Давидовна", 2, 2222);
-        ShowListOfEmployeesWithAllInformation();
+        showListOfEmployeesWithAllInformation();
         printAllSalaryPerMonth();
         showEmployeeWithMinSalary();
-        ShowEmployeeWithMaxMaxSalary();
+        showEmployeeWithMaxMaxSalary();
         printAverageSalaryPerMonth();
         makelistOfEmployeesBySurname();
 
