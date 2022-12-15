@@ -3,19 +3,23 @@ public class Main {
 
     public static void makeListOfEmployees() {
         for (Object empl : employee) {
-            System.out.println(empl);
+            if (employee != null) {
+                System.out.println(empl);
+            }
         }
     }
     public static void makelistOfEmployeesBySurname() {
-        for (int i = 0; i<employee.length; i++){
-            System.out.println(employee[i].getFullName());
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i] != null) {
+                System.out.println(employee[i].getFullName());
+            }
         }
     }
     public static StringBuilder  countMinSalary() {
         int minSalary = (int) employee[0].getSalary();
         StringBuilder employeeWithMinSalary = new StringBuilder();
         for (int i = 0; i<employee.length; i++){
-            if (employee [i].getSalary()< minSalary) {
+            if (employee [i].getSalary()< minSalary && employee[i]!=null) {
                 minSalary = (int) employee[i].getSalary();
                 employeeWithMinSalary.setLength(0);
                 employeeWithMinSalary.append(employee[i].getFullName()).append(" ").append(minSalary);
@@ -30,7 +34,7 @@ public class Main {
         int maxSalary = (int) employee[0].getSalary();
         StringBuilder employeeWithMaxSalary = new StringBuilder();
         for (int i = 0; i<employee.length; i++){
-            if (employee[i].getSalary()>maxSalary) {
+            if (employee[i].getSalary()>maxSalary && employee[i]!=null) {
                 maxSalary = (int) employee[i].getSalary();
                 employeeWithMaxSalary.setLength(0);
                 employeeWithMaxSalary.append(employee[i].getFullName()).append(" ").append(maxSalary);;
@@ -45,7 +49,9 @@ public class Main {
     public static int countAllSalaryPerMonth() {
         int total = 0;
         for (int i = 0; i < employee.length; i++) {
-            total = (int) (total + employee[i].getSalary());
+            if (employee[i] != null) {
+                total = (int) (total + employee[i].getSalary());
+            }
         }
         return total;
     }
@@ -55,7 +61,9 @@ public class Main {
     public static int countAverageValueOfSalaryPerMonth() {
         int total = 0;
         for (int i = 0; i < employee.length; i++) {
-            total = (int) (total + employee[i].getSalary());
+            if (employee[i] != null) {
+                total = (int) (total + employee[i].getSalary());
+            }
         }
         int averageSalary = total/employee.length;
         return averageSalary;
@@ -67,9 +75,11 @@ public class Main {
         double indexSalary = 1.04;
         StringBuilder newSalar = new StringBuilder();
         int newSalary = 0;
-        for (int i=0;i<employee.length;i++){
-            newSalary = (int) (employee[i].getSalary() * indexSalary);
-            newSalar.append("Зарплата после индексации: ").append("\n").append(employee[i].getFullName()).append(" ").append(newSalary).append("\n");
+        for (int i=0;i<employee.length;i++) {
+            if (employee[i] != null) {
+                newSalary = (int) (employee[i].getSalary() * indexSalary);
+                newSalar.append("Зарплата после индексации: ").append("\n").append(employee[i].getFullName()).append(" ").append(newSalary).append("\n");
+            }
         }
         return newSalar;
     }
